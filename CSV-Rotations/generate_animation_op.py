@@ -1,3 +1,4 @@
+import math
 import bpy
 from bpy.types import Operator
 
@@ -15,7 +16,16 @@ class GenerateAnimationOP(Operator):
         return Data.csv is not None
 
     def execute(self, context):
-        Data.set_vehicle()
+        object = Data.set_vehicle()
+        bpy.data.scenes[0].frame_end = len(Data.csv)
+
+        for index, elem in enumerate(Data.csv):
+            object.rotation_euler[0] = math.radians(elem[0])
+            object.rotation_euler[1] = math.radians(elem[1])
+            object.rotation_euler[2] = math.radians(elem[2])
+            object.keyframe_insert(data_path = "rotation_euler", frame = index)
+
+
         return {'FINISHED'}
 
 def register():

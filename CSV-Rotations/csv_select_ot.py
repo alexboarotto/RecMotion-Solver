@@ -30,9 +30,9 @@ def load_data(path):
     for i in data:
         rotation = []
         list = i.split(",")
-        rotation.append(list[roll_index])
-        rotation.append(list[pitch_index])
-        rotation.append(list[yaw_index])
+        rotation.append(float(list[roll_index]))
+        rotation.append(float(list[pitch_index]))
+        rotation.append(float(list[yaw_index]))
         rotations.append(rotation)
     
 
