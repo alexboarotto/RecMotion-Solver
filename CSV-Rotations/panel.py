@@ -20,8 +20,9 @@ class CSVROtationsPanel(bpy.types.Panel):
         layout = self.layout
         layout.operator("csv_rotations.import_csv", text = "Import CSV")
 
-        row = layout.row()
-        row.operator("csv_rotations.generate_animation", text="Generate Animation")
+        if not Data.csv == None:
+            row = layout.row()
+            row.operator("csv_rotations.generate_animation", text="Generate Animation")
 
 
 def register():
