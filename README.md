@@ -3,6 +3,7 @@ Addon that reads rotation data from a csv file and creates an animation rotating
 
 ## Installation
 Download this repo as a zip file clicking on Code > Download ZIP
+
 ![image](https://user-images.githubusercontent.com/59767130/166458698-16596287-9647-4719-b024-bbec422f9175.png)
 
 Copy the *CSV-Rotations* folder into your Blender *"addons"* directory (In Windows it's usually C:\Program Files\Blender Foundation\Blender 3.0\3.0\scripts\addons)
