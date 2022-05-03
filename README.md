@@ -22,16 +22,16 @@ In the properties panel open the scene tab. There you will find a Header called 
 
 ![image](https://user-images.githubusercontent.com/59767130/166460288-1b3d8c6c-101b-456a-ae36-8c6234021678.png)
 
-The _Import CSV_ button will open a file browser where you will be able to select the .txt file containing the rotation data.
-The _Vehicle_ input will allow you to select the object in the scene that you would like to be animated. You can drag and drop objects from the outliner or just click and select objects directly in here
-The _Set Origin_ button will apply all modifiers on the current object selected as the vehicle as well as set the objects origin to the 3D Cursor's location.
+- The _Import CSV_ button will open a file browser where you will be able to select the .txt file containing the rotation data.
+- The _Vehicle_ input will allow you to select the object in the scene that you would like to be animated. You can drag and drop objects from the outliner or just click and select objects directly in here
+- The _Set Origin_ button will apply all modifiers on the current object selected as the vehicle as well as set the objects origin to the 3D Cursor's location.
 
 Once you've imported the .txt file 2 more fields will appear at the bottom of the plugin's UI
 
 ![image](https://user-images.githubusercontent.com/59767130/166461062-932fafba-5f51-47de-be1c-6570e373e12a.png)
 
-The _Frame Interval_ field will allow you to input how many frames you would like there to be between each value read from the csv.
-The _Generate Animation_ button will create a keyframe each *Frame Interval* frames with the rotational data
+- The _Frame Interval_ field will allow you to input how many frames you would like there to be between each value read from the csv.
+- The _Generate Animation_ button will create a keyframe each *Frame Interval* frames with the rotational data
 
 ## Moving 3D Cursor
 In the top-right side of the viewport click on the little arrow hanging from the side to open the additional tools. (Shortcut: *N*)
