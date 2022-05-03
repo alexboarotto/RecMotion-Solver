@@ -15,7 +15,7 @@ class GenerateAnimationOP(Operator):
         return Data.csv is not None
 
     def execute(self, context):
-        print("test")
+        Data.set_vehicle()
         return {'FINISHED'}
 
 def register():

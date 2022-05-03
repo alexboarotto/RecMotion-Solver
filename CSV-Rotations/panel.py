@@ -18,7 +18,9 @@ class CSVROtationsPanel(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
+        scene = context.scene
         layout.operator("csv_rotations.import_csv", text = "Import CSV")
+        layout.prop_search(scene, "vehicle", scene, "objects")
 
         if not Data.csv == None:
             row = layout.row()
@@ -27,6 +29,8 @@ class CSVROtationsPanel(bpy.types.Panel):
 
 def register():
     bpy.utils.register_class(CSVROtationsPanel)
+    bpy.types.Scene.vehicle = bpy.props.StringProperty()
 
 def unregister():
     bpy.utils.unregister_class(CSVROtationsPanel)
+    del bpy.types.Object.vehicle

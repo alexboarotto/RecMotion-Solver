@@ -54,7 +54,6 @@ class ImportCSV_OT(Operator, ImportHelper):
     def execute(self, context):
         try:
             Data.csv = load_data(self.filepath)
-            print(str(Data.csv))
             error = None
         except Exception as err:
             error = err.args[0]
