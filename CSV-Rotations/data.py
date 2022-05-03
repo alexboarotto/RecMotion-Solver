@@ -14,9 +14,9 @@ class Data:
         return vehicle
 
     @classmethod
-    def set_cursor(self, x, y, z):
-        bpy.context.scene.cursor.location = (x, y, z)
-        print(bpy.context.scene.cursor.location)
+    def set_origin(self):
+        bpy.context.view_layer.objects.active = self.vehicle
+        bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 
    
         

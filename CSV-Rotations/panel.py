@@ -30,8 +30,8 @@ class CSVRotationsPanel(bpy.types.Panel):
         layout.row()
         layout.row()
 
-        layout.prop(scene, "cursor_pos", text = "Cursor Location")
-        layout.operator("csv_rotations.set_cursor", text = "Set Cursor")
+        layout.label(text="Apply all modifiers of vehicle and set origin to 3D cursor:")
+        layout.operator("csv_rotations.set_origin", text = "Set Origin")
 
         if not Data.csv == None:
             layout.row()
@@ -44,7 +44,6 @@ class CSVRotationsPanel(bpy.types.Panel):
 def register():
     bpy.utils.register_class(CSVRotationsPanel)
     bpy.types.Scene.vehicle = bpy.props.StringProperty()
-    bpy.types.Scene.cursor_pos = bpy.props.FloatVectorProperty()
     bpy.types.Scene.frame_interval = bpy.props.IntProperty(default = 1, min = 1)
 
 def unregister():

@@ -17,20 +17,19 @@ def apply_modifiers(obj):
     for m in obj.modifiers:
         obj.modifiers.remove(m)
 
-class SetCursorOP(Operator):
-    """Set Cursor Location"""
-    bl_idname = "csv_rotations.set_cursor"
-    bl_label = "Set Cursor Location"
+class SetOriginOP(Operator):
+    """Set Origin Location"""
+    bl_idname = "csv_rotations.set_origin"
+    bl_label = "Set Origin Location"
 
-    cursor_pos: bpy.props.FloatVectorProperty(name="Cursor Position")
 
     def execute(self, context):
-        apply_modifiers(Data.vehicle)
-        Data.set_cursor(self.cursor_pos[0], self.cursor_pos[1], self.cursor_pos[2])
+        apply_modifiers(Data.set_vehicle())
+        Data.set_origin()
         return {'FINISHED'}
 
 def register():
-    bpy.utils.register_class(SetCursorOP)
+    bpy.utils.register_class(SetOriginOP)
 
 def unregister():
-    bpy.utils.unregister_class(SetCursorOP)
+    bpy.utils.unregister_class(SetOriginOP)
