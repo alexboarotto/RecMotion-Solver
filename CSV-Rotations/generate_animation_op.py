@@ -20,7 +20,7 @@ class GenerateAnimationOP(Operator):
         object = Data.set_vehicle()
         bpy.data.scenes[0].frame_end = len(Data.csv)*Data.frame_interval
 
-        for index, elem in enumerate(Data.csv):
+        for index, elem in enumerate(reversed(Data.csv)):
             object.rotation_euler[1] = math.radians(elem[0])
             object.rotation_euler[0] = math.radians(elem[1])
             object.rotation_euler[2] = math.radians(elem[2])
