@@ -20,12 +20,13 @@ class GenerateAnimationOP(Operator):
         object = Data.set_vehicle()
         bpy.data.scenes[0].frame_end = len(Data.csv)*Data.frame_interval
 
+        Data.initial_yaw = Data.csv[0][2]
+
         for index, elem in enumerate(reversed(Data.csv)):
             object.rotation_euler[1] = math.radians(elem[0])
             object.rotation_euler[0] = math.radians(elem[1])
-            object.rotation_euler[2] = math.radians(elem[2])
+            object.rotation_euler[2] = math.radians(elem[2]-Data.initial_yaw)
             object.keyframe_insert(data_path = "rotation_euler", frame = index*Data.frame_interval)
-
 
         return {'FINISHED'}
 

@@ -33,12 +33,12 @@ class CSVRotationsPanel(bpy.types.Panel):
         layout.label(text="Apply all modifiers of vehicle and set origin to 3D cursor:")
         layout.operator("csv_rotations.set_origin", text = "Set Origin")
 
-        if not Data.csv == None:
-            layout.row()
-            layout.row()
-            layout.row()
-            layout.prop(scene, "frame_interval", text = "Frame Interval")
-            layout.operator("csv_rotations.generate_animation", text="Generate Animation")
+        
+        layout.row()
+        layout.row()
+        layout.row()
+        layout.prop(scene, "frame_interval", text = "Frame Interval")
+        layout.operator("csv_rotations.generate_animation", text="Generate Animation")
 
 
 def register():

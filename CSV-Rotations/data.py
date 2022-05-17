@@ -8,6 +8,8 @@ class Data:
 
     frame_interval = 1
 
+    initial_yaw = 0
+
     @classmethod
     def set_vehicle(self):
         vehicle = bpy.data.objects[bpy.context.scene.vehicle]
