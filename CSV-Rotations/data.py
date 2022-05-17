@@ -7,8 +7,8 @@ class Data:
     vehicle = None
 
     frame_interval = 1
-
     initial_yaw = 0
+    rotation_multipliers = []
 
     @classmethod
     def set_vehicle(self):
