@@ -27,12 +27,14 @@ def load_data(path):
 
     rotations = []
 
+    Data.initial_yaw = data[0].split(",")[yaw_index]
+
     for i in data:
         rotation = []
         list = i.split(",")
         rotation.append(float(list[roll_index]))
         rotation.append(float(list[pitch_index]))
-        rotation.append(float(list[yaw_index]))
+        rotation.append(float(list[yaw_index])-float(Data.initial_yaw))
         rotations.append(rotation)
     
 
