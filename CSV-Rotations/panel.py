@@ -37,6 +37,11 @@ class CSVRotationsPanel(bpy.types.Panel):
         col.prop(scene, "rotation_multipliers", text = "Rotation Multipliers")
 
         layout.row()
+
+        col = layout.column()
+        col.prop(scene, "lock_axis", text = "Lock rotation axis")
+
+        layout.row()
         layout.row()
         layout.row()
         layout.prop(scene, "frame_interval", text = "Frame Interval")
@@ -48,9 +53,12 @@ def register():
     bpy.types.Scene.vehicle = bpy.props.StringProperty()
     bpy.types.Scene.frame_interval = bpy.props.IntProperty(default = 1, min = 1)
     bpy.types.Scene.rotation_multipliers = bpy.props.FloatVectorProperty(default = (1.0, 1.0, 1.0), min = -2.0, max = 2.0, subtype = 'XYZ')
+    bpy.types.Scene.lock_axis = bpy.props.BoolVectorProperty(default = (False, False, False), subtype = 'XYZ')
+
 
 def unregister():
     bpy.utils.unregister_class(CSVRotationsPanel)
     del bpy.types.Scene.vehicle
     del bpy.types.Scene.frame_interval
     del bpy.types.Scene.rotation_multipliers
+    del bpy.types.Scene.lock_axis

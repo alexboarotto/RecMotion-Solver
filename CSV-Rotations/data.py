@@ -9,6 +9,7 @@ class Data:
     frame_interval = 1
     initial_yaw = 0
     rotation_multipliers = []
+    lock_axis = []
 
     @classmethod
     def set_vehicle(self):

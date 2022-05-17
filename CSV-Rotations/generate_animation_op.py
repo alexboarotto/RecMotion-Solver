@@ -18,16 +18,19 @@ class GenerateAnimationOP(Operator):
     def execute(self, context):
         Data.frame_interval = bpy.context.scene.frame_interval
         Data.rotation_multipliers = bpy.context.scene.rotation_multipliers
-        print(Data.rotation_multipliers)
+        Data.lock_axis = bpy.context.scene.lock_axis
         object = Data.set_vehicle()
         bpy.data.scenes[0].frame_end = len(Data.csv)*Data.frame_interval
 
         Data.initial_yaw = Data.csv[0][2]
 
         for index, elem in enumerate(reversed(Data.csv)):
-            object.rotation_euler[1] = math.radians(elem[0]*Data.rotation_multipliers[0])
-            object.rotation_euler[0] = math.radians(elem[1]*Data.rotation_multipliers[1])
-            object.rotation_euler[2] = math.radians((elem[2]-Data.initial_yaw)*Data.rotation_multipliers[2])
+            if not Data.lock_axis[0]:
+                object.rotation_euler[1] = math.radians(elem[0]*Data.rotation_multipliers[0])
+            if not Data.lock_axis[1]:
+                object.rotation_euler[0] = math.radians(elem[1]*Data.rotation_multipliers[1])
+            if not Data.lock_axis[2]:
+                object.rotation_euler[2] = math.radians((elem[2]-Data.initial_yaw)*Data.rotation_multipliers[2])
             object.keyframe_insert(data_path = "rotation_euler", frame = index*Data.frame_interval)
 
         return {'FINISHED'}
