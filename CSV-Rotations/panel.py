@@ -48,6 +48,5 @@ def register():
 
 def unregister():
     bpy.utils.unregister_class(CSVRotationsPanel)
-    del bpy.types.Object.vehicle
-    del bpy.types.Scene.cursor_pos
+    del bpy.types.Scene.vehicle
     del bpy.types.Scene.frame_interval
