@@ -16,6 +16,7 @@ class GenerateAnimationOP(Operator):
         return Data.csv is not None
 
     def execute(self, context):
+        bpy.context.active_object.animation_data_clear()
         Data.frame_interval = bpy.context.scene.frame_interval
         Data.rotation_multipliers = bpy.context.scene.rotation_multipliers
         Data.lock_axis = bpy.context.scene.lock_axis
