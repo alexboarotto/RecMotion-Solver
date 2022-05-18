@@ -40,7 +40,6 @@ class DisplayTimecodeOP(bpy.types.Operator):
     
     def invoke(self, context, event):
         args = (self, context)
-        print("invoked")
         self.register_handlers(args, context)
         context.window_manager.modal_handler_add(self)
         return {'RUNNING_MODAL'}
