@@ -1,12 +1,14 @@
 import bpy
 import blf
 from bpy.app.handlers import persistent
+
+from . data import Data
     
 def drawing_list():
     font_id = 0
     blf.size(font_id, 20, 72)
     blf.position(font_id, 30, 30, 0)
-    blf.draw(font_id, "TEST")
+    blf.draw(font_id, Data.current_timecode)
 
 @persistent
 def load_handler(context):
@@ -21,14 +23,14 @@ class DisplayTimecodeOP(bpy.types.Operator):
         self.draw_event = None
         self.widgets = []
 
-    
     def draw_callback_px(self, op, context):
         drawing_list()
-
 
     def modal(self, context, event):
         if context.area:
             context.area.tag_redraw()
+
+        Data.set_timecode(bpy.data.scenes[0].frame_current)
 
         if event.type == "ESC":
             self.unregister_handlers(self, context)

@@ -30,11 +30,17 @@ def load_data(path):
     Data.initial_yaw = data[0].split(",")[yaw_index]
 
     for i in data:
-        rotation = []
+        rotation = {
+            "roll": 0,
+            "pitch": 0,
+            "yaw": 0,
+            "timecode": ""
+        }
         list = i.split(",")
-        rotation.append(float(list[roll_index]))
-        rotation.append(float(list[pitch_index]))
-        rotation.append(float(list[yaw_index])-float(Data.initial_yaw))
+        rotation["roll"] = float(list[roll_index])
+        rotation["pitch"] = float(list[pitch_index])
+        rotation["yaw"] = float(list[yaw_index])-float(Data.initial_yaw)
+        rotation["timecode"] = list[0]
         rotations.append(rotation)
     
 
