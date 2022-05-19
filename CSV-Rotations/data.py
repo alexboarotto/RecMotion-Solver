@@ -15,13 +15,15 @@ class Data:
 
     @classmethod
     def set_vehicle(self):
-        vehicle = bpy.data.objects[bpy.context.scene.vehicle]
+        if bpy.context.scene.vehicle is not None:
+            vehicle = bpy.data.objects[bpy.context.scene.vehicle]
         return vehicle
 
     @classmethod
     def set_origin(self):
-        bpy.context.view_layer.objects.active = self.vehicle
-        bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
+        if self.vehicle is not None:
+            bpy.context.view_layer.objects.active = self.vehicle
+            bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 
     @classmethod
     def set_timecode(self, frame):
