@@ -1,12 +1,13 @@
 import bpy
 import blf
+import bgl
 from bpy.app.handlers import persistent
 
 from . data import Data
     
 def drawing_list():
     font_id = 0
-    blf.size(font_id, 20, 72)
+    blf.size(font_id, 60, 72)
     blf.position(font_id, 30, 30, 0)
     blf.draw(font_id, Data.current_timecode)
 

@@ -15,9 +15,9 @@ class Data:
 
     @classmethod
     def set_vehicle(self):
-        if bpy.context.scene.vehicle is not None:
-            vehicle = bpy.data.objects[bpy.context.scene.vehicle]
-        return vehicle
+        if not bpy.context.scene.vehicle == "":
+            self.vehicle = bpy.data.objects[bpy.context.scene.vehicle]
+            return self.vehicle
 
     @classmethod
     def set_origin(self):

@@ -24,8 +24,9 @@ class SetOriginOP(Operator):
 
 
     def execute(self, context):
-        apply_modifiers(Data.set_vehicle())
-        Data.set_origin()
+        if Data.vehicle is not None:
+            apply_modifiers(Data.set_vehicle())
+            Data.set_origin()
         return {'FINISHED'}
 
 def register():

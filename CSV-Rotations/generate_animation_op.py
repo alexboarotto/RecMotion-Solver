@@ -16,11 +16,14 @@ class GenerateAnimationOP(Operator):
         return Data.csv is not None
 
     def execute(self, context):
+        object = Data.set_vehicle()
+        if Data.vehicle is None:
+            return {'FINISHED'}
+
         bpy.context.active_object.animation_data_clear()
         Data.frame_interval = bpy.context.scene.frame_interval
         Data.rotation_multipliers = bpy.context.scene.rotation_multipliers
         Data.lock_axis = bpy.context.scene.lock_axis
-        object = Data.set_vehicle()
         bpy.data.scenes[0].frame_end = len(Data.csv)*Data.frame_interval
 
         for index, elem in enumerate(reversed(Data.csv)):
