@@ -1,50 +1,56 @@
+import enum
 import bpy
 from bpy_extras.io_utils import ImportHelper
 from bpy.types import Operator
 from bpy.props import StringProperty
+import csv
 
 from . data import Data
 
 # Load and return json file
 def load_data(path):
-    file = open(path, mode='r')
-    data = file.readlines()
-    file.close()
+    with open(path, mode='r') as csv_file:
+        reader = csv.reader(csv_file)
+        
+        data = []
 
-    roll_index = None
-    pitch_index = None
-    yaw_index = None
+        for i in reader:
+            data.append(i)
 
-    for index, elem in enumerate(data[0].split(",")):
-        if elem.strip() == "Roll":
-            roll_index = index
-        if elem.strip() == "Pitch":
-            pitch_index = index
-        if elem.strip() == "Yaw":
-            yaw_index = index
-    
-    data.pop(0)
+        roll_index = None
+        pitch_index = None
+        yaw_index = None
 
-    rotations = []
+        for index, elem in enumerate(data[0]):
+            if elem == "roll":
+                roll_index = index
+            if elem == "pitch":
+                pitch_index = index
+            if elem == "yaw":
+                yaw_index = index
 
-    Data.initial_yaw = data[0].split(",")[yaw_index]
+        rotations = []
 
-    for i in data:
-        rotation = {
-            "roll": 0,
-            "pitch": 0,
-            "yaw": 0,
-            "timecode": ""
-        }
-        list = i.split(",")
-        rotation["roll"] = float(list[roll_index])
-        rotation["pitch"] = float(list[pitch_index])
-        rotation["yaw"] = float(list[yaw_index])-float(Data.initial_yaw)
-        rotation["timecode"] = list[0]
-        rotations.append(rotation)
-    
+        print(data.pop(0))
 
-    return rotations
+        Data.initial_yaw = data[0][yaw_index]
+
+
+        for i in data:
+            rotation = {
+                "roll": 0,
+                "pitch": 0,
+                "yaw": 0,
+                "timecode": ""
+            }
+            rotation["roll"] = float(i[roll_index])
+            rotation["pitch"] = float(i[pitch_index])
+            rotation["yaw"] = float(i[yaw_index])-float(Data.initial_yaw)
+            rotation["timecode"] = i[0]
+            rotations.append(rotation)
+        
+
+        return rotations
 
 
 class ImportCSV_OT(Operator, ImportHelper):
@@ -52,10 +58,10 @@ class ImportCSV_OT(Operator, ImportHelper):
     bl_idname = 'csv_rotations.import_csv'
     bl_label = 'import csv'
  
-    filename_ext = '.txt'
+    filename_ext = '.csv'
     
     filter_glob: StringProperty(
-        default='*.txt',
+        default='*.csv',
         options={'HIDDEN'}
     )
  
@@ -66,7 +72,7 @@ class ImportCSV_OT(Operator, ImportHelper):
         except Exception as err:
             error = err.args[0]
         if error is not None:
-            self.report({'ERROR'}, error)
+            self.report({'ERROR'}, str(error))
         return {'FINISHED'}
 
 def register():

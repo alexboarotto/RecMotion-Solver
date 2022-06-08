@@ -9,6 +9,7 @@ def drawing_list():
     font_id = 0
     blf.size(font_id, 60, 72)
     blf.position(font_id, 30, 30, 0)
+    bgl.glColorMask(1,1,1,1)
     blf.draw(font_id, Data.current_timecode)
 
 @persistent

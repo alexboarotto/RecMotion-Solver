@@ -7,6 +7,7 @@ class Data:
     vehicle = None
 
     frame_interval = 1
+    fps = 24
     initial_yaw = 0
     rotation_multipliers = []
     lock_axis = []

@@ -45,6 +45,7 @@ class CSVRotationsPanel(bpy.types.Panel):
         layout.row()
         layout.row()
         layout.prop(scene, "frame_interval", text = "Frame Interval")
+        layout.prop(scene, "frames_per_second", text = "Frames Per Second")
         layout.operator("csv_rotations.generate_animation", text="Generate Animation")
 
 
@@ -54,6 +55,7 @@ def register():
     bpy.types.Scene.frame_interval = bpy.props.IntProperty(default = 1, min = 1)
     bpy.types.Scene.rotation_multipliers = bpy.props.FloatVectorProperty(default = (1.0, 1.0, 1.0), min = -2.0, max = 2.0, subtype = 'XYZ')
     bpy.types.Scene.lock_axis = bpy.props.BoolVectorProperty(default = (False, False, False), subtype = 'XYZ')
+    bpy.types.Scene.frames_per_second = bpy.props.IntProperty(default = 24, min = 1)
 
 
 def unregister():
@@ -62,3 +64,4 @@ def unregister():
     del bpy.types.Scene.frame_interval
     del bpy.types.Scene.rotation_multipliers
     del bpy.types.Scene.lock_axis
+    del bpy.types.Scene.frames_per_second
