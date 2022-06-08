@@ -31,7 +31,7 @@ def load_data(path):
 
         rotations = []
 
-        print(data.pop(0))
+        data.pop(0)
 
         Data.initial_yaw = data[0][yaw_index]
 
