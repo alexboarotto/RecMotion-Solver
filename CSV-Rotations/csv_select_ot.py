@@ -17,6 +17,9 @@ def load_data(path):
         for i in reader:
             data.append(i)
 
+        Data.data = data
+        print(Data.data)
+
         roll_index = None
         pitch_index = None
         yaw_index = None

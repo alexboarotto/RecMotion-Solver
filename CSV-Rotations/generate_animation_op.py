@@ -26,7 +26,7 @@ class GenerateAnimationOP(Operator):
         Data.rotation_multipliers = bpy.context.scene.rotation_multipliers
         Data.lock_axis = bpy.context.scene.lock_axis
         bpy.data.scenes[0].frame_end = len(Data.csv)*Data.frame_interval
-        bpy.context.scene.render.fps = Data.fps
+        #bpy.context.scene.render.fps = Data.fps
 
         for index, elem in enumerate(reversed(Data.csv)):
             if not Data.lock_axis[0]:

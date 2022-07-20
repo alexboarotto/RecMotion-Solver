@@ -48,6 +48,10 @@ class CSVRotationsPanel(bpy.types.Panel):
         layout.prop(scene, "frames_per_second", text = "Frames Per Second")
         layout.operator("csv_rotations.generate_animation", text="Generate Animation")
 
+        layout.row()
+        layout.row()
+
+        layout.operator("csv_rotations.export_csv", text = "Export Data")
 
 def register():
     bpy.utils.register_class(CSVRotationsPanel)
