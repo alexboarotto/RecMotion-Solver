@@ -6,7 +6,7 @@ from . import display_timecode_op
 from . import export_data_op
 
 bl_info = {
-    "name": "CSV Rotations",
+    "name": "RecMotion Solver",
     "blender": (3, 0, 0),
     "category": "Object",
     "support": "COMMUNITY",

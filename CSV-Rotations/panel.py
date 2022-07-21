@@ -14,7 +14,7 @@ class CSVRotationsPanel(bpy.types.Panel):
 
     def draw_header(self, context):
         layout = self.layout
-        layout.label(text="CSV Rotations")
+        layout.label(text="RecMotion Solver")
 
     def draw(self, context):
         layout = self.layout
