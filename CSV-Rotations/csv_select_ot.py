@@ -17,8 +17,7 @@ def load_data(path):
         for i in reader:
             data.append(i)
 
-        Data.data = data
-        print(Data.data)
+        Data.data = data[:]
 
         roll_index = None
         pitch_index = None
@@ -37,7 +36,6 @@ def load_data(path):
         data.pop(0)
 
         Data.initial_yaw = data[0][yaw_index]
-
 
         for i in data:
             rotation = {
