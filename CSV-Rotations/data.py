@@ -15,6 +15,8 @@ class Data:
 
     current_timecode = "00:00:00:00"
 
+    axis_ext = 535
+
     @classmethod
     def set_vehicle(self):
         if not bpy.context.scene.vehicle == "":
@@ -32,6 +34,12 @@ class Data:
         index = round(frame/self.frame_interval)
         if self.csv is not None and index < len(self.csv):
             self.current_timecode = self.csv[index]["timecode"]
+
+    @classmethod
+    def check_extension(self, axis_data):
+        ext = max(axis_data) - min(axis_data)
+        if ext < 0 or ext > self.axis_ext:
+            raise Exception("Axis extension over boundaries")
 
    
         

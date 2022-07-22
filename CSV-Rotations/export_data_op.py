@@ -123,6 +123,13 @@ class ExportCSV_OT(Operator, ExportHelper):
             red_distances.append(int(get_distance(red_piston, red_cylinder)*1000))
             orange_distances.append(int(get_distance(orange_piston, orange_cylinder)*1000))
 
+        Data.check_extension(yellow_distances)
+        Data.check_extension(green_distances)
+        Data.check_extension(light_blue_distances)
+        Data.check_extension(blue_distances)
+        Data.check_extension(red_distances)
+        Data.check_extension(orange_distances)
+
         try:
             load_data(self.filepath)
             error = None
