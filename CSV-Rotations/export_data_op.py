@@ -20,24 +20,26 @@ axis = ['yellow', 'green', 'light_blue', 'blue', 'red', 'orange']
 # Load and return json file
 def load_data(path):
     with open(path, mode='w') as csv_file:
+        data = Data.data[:]
+
         spamwriter = csv.writer(csv_file)
 
-        first_row = Data.data[0]
+        first_row = data[0]
 
         for i in range(0,6):
             first_row.append("axis_"+str(axis[i]))
 
         spamwriter.writerow(first_row)
 
-        for i in range(1, len(Data.data)):
-            Data.data[i].append(yellow_distances[i-1])
-            Data.data[i].append(green_distances[i-1])
-            Data.data[i].append(light_blue_distances[i-1])
-            Data.data[i].append(blue_distances[i-1])
-            Data.data[i].append(red_distances[i-1])
-            Data.data[i].append(orange_distances[i-1])
+        for i in range(1, len(data)):
+            data[i].append(yellow_distances[i-1])
+            data[i].append(green_distances[i-1])
+            data[i].append(light_blue_distances[i-1])
+            data[i].append(blue_distances[i-1])
+            data[i].append(red_distances[i-1])
+            data[i].append(orange_distances[i-1])
 
-            spamwriter.writerow(Data.data[i])
+            spamwriter.writerow(data[i])
 
 def get_min_y(obj):
     vertices = [v.co for v in obj.data.vertices]
