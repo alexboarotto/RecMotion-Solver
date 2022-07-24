@@ -51,7 +51,9 @@ class CSVRotationsPanel(bpy.types.Panel):
         layout.row()
         layout.row()
 
+        layout.prop(scene, "max_extension", text = "Maximum Axis Extension")
         layout.operator("csv_rotations.export_csv", text = "Export Data")
+
 
 def register():
     bpy.utils.register_class(CSVRotationsPanel)
@@ -60,6 +62,7 @@ def register():
     bpy.types.Scene.rotation_multipliers = bpy.props.FloatVectorProperty(default = (1.0, 1.0, 1.0), min = -2.0, max = 2.0, subtype = 'XYZ')
     bpy.types.Scene.lock_axis = bpy.props.BoolVectorProperty(default = (False, False, False), subtype = 'XYZ')
     bpy.types.Scene.frames_per_second = bpy.props.IntProperty(default = 24, min = 1)
+    bpy.types.Scene.max_extension = bpy.props.IntProperty(default = 535, min = 1)
 
 
 def unregister():
@@ -69,3 +72,4 @@ def unregister():
     del bpy.types.Scene.rotation_multipliers
     del bpy.types.Scene.lock_axis
     del bpy.types.Scene.frames_per_second
+    del bpy.types.Scene.max_extension

@@ -80,6 +80,8 @@ class ExportCSV_OT(Operator, ExportHelper):
     )
  
     def execute(self, context):
+        Data.axis_ext = bpy.context.scene.max_extension
+
         # OBJECT NAMES
         yellow = ["Body_1_5", "Body_2_16"]
         green = ["Body_1_4", "Body_2_17"]
