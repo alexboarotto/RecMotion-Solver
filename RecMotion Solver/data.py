@@ -3,6 +3,8 @@ import bpy
 
 # Shared Data Accessor
 class Data:
+    REST_DISTANCE = 1355
+
     data = None
     csv = None
     vehicle = None
@@ -37,9 +39,10 @@ class Data:
 
     @classmethod
     def check_extension(self, axis_data):
-        ext = max(axis_data) - min(axis_data)
-        if ext < 0 or ext > self.axis_ext:
-            raise Exception("Axis extension over boundaries")
+        for ext in axis_data:
+            ext -= self.REST_DISTANCE
+            if ext < 0 or ext > self.axis_ext:
+                raise Exception("Axis extension over boundaries")
 
    
         

@@ -8,6 +8,7 @@ import csv
 
 from . data import Data
 
+
 yellow_distances = []
 green_distances = []
 light_blue_distances = []
@@ -15,7 +16,7 @@ blue_distances = []
 red_distances = []
 orange_distances = []
 
-axis = ['yellow', 'green', 'light_blue', 'blue', 'red', 'orange']
+locator_rotations = []
 
 # Load and return json file
 def load_data(path):
@@ -25,20 +26,23 @@ def load_data(path):
         spamwriter = csv.writer(csv_file)
 
         first_row = data[0]
-
+        
         for i in range(0,6):
-            first_row.append("axis_"+str(axis[i]))
+            first_row.append("axis_"+str(i))
+
+        first_row.append("rotation")
 
         spamwriter.writerow(first_row)
 
         for i in range(1, len(data)):
+            data[i].append(red_distances[i-1])
+            data[i].append(orange_distances[i-1])
             data[i].append(yellow_distances[i-1])
             data[i].append(green_distances[i-1])
             data[i].append(light_blue_distances[i-1])
             data[i].append(blue_distances[i-1])
-            data[i].append(red_distances[i-1])
-            data[i].append(orange_distances[i-1])
-
+            data[i].append(locator_rotations[i-1])
+            
             spamwriter.writerow(data[i])
 
 def get_min_y(obj):
@@ -82,6 +86,10 @@ class ExportCSV_OT(Operator, ExportHelper):
     )
  
     def execute(self, context):
+        # Handle to locator variable
+        locator = bpy.data.objects["Main_Locator"]
+
+        # Set max extension variable
         Data.axis_ext = bpy.context.scene.max_extension
 
         # OBJECT NAMES
@@ -91,6 +99,7 @@ class ExportCSV_OT(Operator, ExportHelper):
         blue = ["Body_1_6", "Body_2_19"]
         red = ["Body_1_8", "Body_2_20"]
         orange = ["Body_1_7", "Body_2_15"]
+
 
         #Handle to objects
         #============================================================
@@ -116,8 +125,8 @@ class ExportCSV_OT(Operator, ExportHelper):
         orange_cylinder = bpy.data.objects[orange[0]]
         #============================================================
 
+        # loop through current keyframes in animation
         for frame in range(0, bpy.data.scenes[0].frame_end, Data.frame_interval):
-
             bpy.context.scene.frame_set(frame)
 
             yellow_distances.append(int(get_distance(yellow_piston, yellow_cylinder)*1000))
@@ -126,6 +135,9 @@ class ExportCSV_OT(Operator, ExportHelper):
             blue_distances.append(int(get_distance(blue_piston, blue_cylinder)*1000))
             red_distances.append(int(get_distance(red_piston, red_cylinder)*1000))
             orange_distances.append(int(get_distance(orange_piston, orange_cylinder)*1000))
+
+            locator_rotations.append(locator.rotation_euler[2])
+
 
         Data.check_extension(yellow_distances)
         Data.check_extension(green_distances)
