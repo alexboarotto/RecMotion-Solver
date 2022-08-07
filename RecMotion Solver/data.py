@@ -40,7 +40,6 @@ class Data:
     @classmethod
     def check_extension(self, axis_data):
         for ext in axis_data:
-            ext -= self.REST_DISTANCE
             if ext < 0 or ext > self.axis_ext:
                 raise Exception("Axis extension over boundaries")
 

@@ -87,7 +87,7 @@ class ExportCSV_OT(Operator, ExportHelper):
  
     def execute(self, context):
         # Handle to locator variable
-        locator = bpy.data.objects["Main_Locator"]
+        locator = bpy.data.objects["Top_plate_Locator"]
 
         # Set max extension variable
         Data.axis_ext = bpy.context.scene.max_extension
@@ -129,12 +129,12 @@ class ExportCSV_OT(Operator, ExportHelper):
         for frame in range(0, bpy.data.scenes[0].frame_end, Data.frame_interval):
             bpy.context.scene.frame_set(frame)
 
-            yellow_distances.append(int(get_distance(yellow_piston, yellow_cylinder)*1000))
-            green_distances.append(int(get_distance(green_piston, green_cylinder)*1000))
-            light_blue_distances.append(int(get_distance(light_blue_piston, light_blue_cylinder)*1000))
-            blue_distances.append(int(get_distance(blue_piston, blue_cylinder)*1000))
-            red_distances.append(int(get_distance(red_piston, red_cylinder)*1000))
-            orange_distances.append(int(get_distance(orange_piston, orange_cylinder)*1000))
+            yellow_distances.append(int(get_distance(yellow_piston, yellow_cylinder)*1000)-Data.REST_DISTANCE)
+            green_distances.append(int(get_distance(green_piston, green_cylinder)*1000)-Data.REST_DISTANCE)
+            light_blue_distances.append(int(get_distance(light_blue_piston, light_blue_cylinder)*1000)-Data.REST_DISTANCE)
+            blue_distances.append(int(get_distance(blue_piston, blue_cylinder)*1000)-Data.REST_DISTANCE)
+            red_distances.append(int(get_distance(red_piston, red_cylinder)*1000)-Data.REST_DISTANCE)
+            orange_distances.append(int(get_distance(orange_piston, orange_cylinder)*1000)-Data.REST_DISTANCE)
 
             locator_rotations.append(locator.rotation_euler[2])
 
